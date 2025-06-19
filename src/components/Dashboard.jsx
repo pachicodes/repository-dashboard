@@ -18,14 +18,7 @@ import {
   Avatar,
   Timeline,
   UnderlineNav,
-  PageHeader,
-  Label,
-  Link,
-  Text,
-  CounterLabel,
-  ButtonGroup,
-  Avatar,
-  Timeline
+  PageHeader
 } from '@primer/react';
 import {
   RepoIcon,
