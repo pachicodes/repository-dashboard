@@ -208,7 +208,7 @@ const Dashboard = () => {
                     <Heading sx={{ fontSize: 2 }}>Últimas Releases</Heading>
                   </Box>
                   
-                  <BorderBox>
+                  <Box sx={{ borderWidth: '1px', borderStyle: 'solid', borderColor: 'border.default', borderRadius: 2 }}>
                     {repository.releases.map((release, index) => (
                       <Box 
                         key={index} 
@@ -228,7 +228,7 @@ const Dashboard = () => {
                         </Box>
                       </Box>
                     ))}
-                  </BorderBox>
+                  </Box>
                 </Box>
               )}
               
