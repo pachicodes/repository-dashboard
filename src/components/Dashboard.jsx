@@ -4,7 +4,6 @@ import {
   Box,
   PageLayout,
   Header,
-  StyledOcticon,
   Text,
   Heading,
   FormControl,
@@ -13,13 +12,13 @@ import {
   Spinner,
   Flash,
   Link,
-  BorderBox,
   Breadcrumbs,
   Avatar,
   CounterLabel,
   Timeline,
   BranchName,
-  Label
+  Label,
+  CircleOcticon
 } from '@primer/react';
 import {
   MarkGithubIcon,
@@ -83,7 +82,7 @@ const Dashboard = () => {
         <Header>
           <Header.Item>
             <Header.Link href="#" fontSize={2}>
-              <StyledOcticon icon={MarkGithubIcon} size={32} sx={{ mr: 2 }} />
+              <CircleOcticon icon={MarkGithubIcon} size={32} sx={{ mr: 2 }} />
               <span>GitHub Repository Status</span>
             </Header.Link>
           </Header.Item>
@@ -160,7 +159,7 @@ const Dashboard = () => {
               <BorderBox sx={{ mb: 4, p: 3 }}>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <StyledOcticon icon={IssueOpenedIcon} size={20} sx={{ mr: 2, color: 'success.fg' }} />
+                    <CircleOcticon icon={IssueOpenedIcon} size={20} sx={{ mr: 2, color: 'success.fg' }} />
                     <Box>
                       <Text sx={{ fontWeight: 'bold', display: 'block' }}>{repository.issues}</Text>
                       <Text sx={{ fontSize: 0, color: 'fg.muted' }}>Issues</Text>
@@ -168,7 +167,7 @@ const Dashboard = () => {
                   </Box>
                   
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <StyledOcticon icon={GitPullRequestIcon} size={20} sx={{ mr: 2, color: 'done.fg' }} />
+                    <CircleOcticon icon={GitPullRequestIcon} size={20} sx={{ mr: 2, color: 'done.fg' }} />
                     <Box>
                       <Text sx={{ fontWeight: 'bold', display: 'block' }}>{repository.pullRequests}</Text>
                       <Text sx={{ fontSize: 0, color: 'fg.muted' }}>Pull Requests</Text>
