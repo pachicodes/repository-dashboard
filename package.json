@@ -2,24 +2,21 @@
   "name": "repository-dashboard",
   "version": "1.0.0",
   "description": "A dashboard to display the status of GitHub repositories.",
-  "main": "src/app.ts",
+  "main": "src/app.jsx",
   "scripts": {
-    "start": "ts-node src/app.ts",
-    "build": "tsc",
-    "test": "jest"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "axios": "^0.21.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "axios": "^1.5.0",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
-    "typescript": "^4.3.2",
-    "ts-node": "^10.0.0",
-    "jest": "^27.0.6",
-    "@types/jest": "^27.0.1",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.2"
+    "jest": "^29.6.2"
   },
   "repository": {
     "type": "git",
