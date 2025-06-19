@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface StatusIndicatorProps {
-    status: 'online' | 'offline' | 'error';
-}
-
-const StatusIndicator: React.FC<StatusIndicatorProps> = ({ status }) => {
+const StatusIndicator = ({ status }) => {
     let indicatorColor;
 
     switch (status) {

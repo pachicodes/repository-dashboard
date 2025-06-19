@@ -1,6 +1,4 @@
-import { Repository, Status } from '../types';
-
-export const getFormattedStatus = (status: Status): string => {
+export const getFormattedStatus = (status) => {
     switch (status) {
         case 'online':
             return 'Online';
@@ -13,6 +11,6 @@ export const getFormattedStatus = (status: Status): string => {
     }
 };
 
-export const filterRepositories = (repositories: Repository[], status: Status): Repository[] => {
+export const filterRepositories = (repositories, status) => {
     return repositories.filter(repo => repo.status === status);
 };
