@@ -10,6 +10,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@primer/octicons-react": "^19.15.2",
     "@primer/react": "^37.27.0",
     "axios": "^1.5.0",
     "react": "^18.2.0",

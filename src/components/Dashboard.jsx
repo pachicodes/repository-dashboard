@@ -1,6 +1,38 @@
 import React, { useState } from 'react';
 import { searchRepository } from '../services/githubApi';
-import '../styles/Dashboard.css';
+import {
+  Box,
+  Header,
+  Heading,
+  TextInput,
+  Button,
+  FormControl,
+  Flash,
+  Spinner,
+  PageLayout,
+  Label,
+  Link,
+  Text,
+  CounterLabel,
+  ButtonGroup,
+  Avatar,
+  Timeline,
+  UnderlineNav,
+  Pagehead
+} from '@primer/react';
+import {
+  RepoIcon,
+  StarIcon,
+  RepoForkedIcon,
+  IssueOpenedIcon,
+  GitPullRequestIcon,
+  SyncIcon,
+  TagIcon,
+  CodeIcon,
+  MarkGithubIcon,
+  CommitIcon,
+  PeopleIcon
+} from '@primer/octicons-react';
 
 const Dashboard = () => {
     const [searchInput, setSearchInput] = useState('');
