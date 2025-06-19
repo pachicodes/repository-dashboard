@@ -124,7 +124,7 @@ const Dashboard = () => {
                                     </Flash>
                                 )}
                             </Box>
-                        </Pagehead>
+                        </PageHeader>
 
                         {loading && (
                             <Box display="flex" justifyContent="center" p={4}>
