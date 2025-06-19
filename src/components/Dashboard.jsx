@@ -77,104 +77,186 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="dashboard">
-            <header className="dashboard-header">
-                <h1>GitHub Repository Status</h1>
-                <form onSubmit={handleSearch} className="search-form">
-                    <input 
-                        type="text" 
-                        value={searchInput} 
-                        onChange={(e) => setSearchInput(e.target.value)}
-                        placeholder="Digite owner/repo (ex: facebook/react)" 
-                        className="search-input"
-                    />
-                    <button type="submit" className="search-button">Buscar</button>
-                </form>
-                {error && <p className="error-message">{error}</p>}
-            </header>
-
-            {loading && <div className="loading">Carregando...</div>}
+        <Box bg="canvas.default" minHeight="100vh">
+            <Header>
+                <Header.Item>
+                    <Header.Link href="#" fontSize={2}>
+                        <MarkGithubIcon size={32} />
+                        <span style={{ marginLeft: 8 }}>Repository Dashboard</span>
+                    </Header.Link>
+                </Header.Item>
+            </Header>
             
-            {repository && !loading && (
-                <div className="repository-details">
-                    <div className="repo-header">
-                        <div>
-                            <h2>
-                                <a href={repository.link} target="_blank" rel="noopener noreferrer">
-                                    {repository.fullName}
-                                </a>
-                            </h2>
-                            <p className="description">{repository.description}</p>
-                        </div>
-                        <button onClick={handleRefresh} className="refresh-button">
-                            Atualizar
-                        </button>
-                    </div>
-                    
-                    <div className="stats-container">
-                        <div className="stat-item">
-                            <span className="stat-label">Issues abertas</span>
-                            <span className="stat-value">{repository.issues}</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-label">Pull Requests</span>
-                            <span className="stat-value">{repository.pullRequests}</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-label">Estrelas</span>
-                            <span className="stat-value">{repository.stars}</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-label">Forks</span>
-                            <span className="stat-value">{repository.forks}</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-label">Linguagem</span>
-                            <span className="stat-value">{repository.language || 'N/A'}</span>
-                        </div>
-                    </div>
-                    
-                    {repository.releases && repository.releases.length > 0 && (
-                        <div className="section">
-                            <h3>Últimas releases</h3>
-                            <ul className="releases-list">
-                                {repository.releases.map((release, index) => (
-                                    <li key={index}>
-                                        <a href={release.url} target="_blank" rel="noopener noreferrer">
-                                            {release.name}
-                                        </a>
-                                        <span className="date">
-                                            {new Date(release.date).toLocaleDateString()}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                    
-                    {repository.recentCommits && repository.recentCommits.length > 0 && (
-                        <div className="section">
-                            <h3>Commits recentes</h3>
-                            <ul className="commits-list">
-                                {repository.recentCommits.map((commit, index) => (
-                                    <li key={index}>
-                                        <a href={commit.url} target="_blank" rel="noopener noreferrer">
-                                            {commit.message.split('\n')[0]}
-                                        </a>
-                                        <div className="commit-info">
-                                            <span>{commit.author}</span>
-                                            <span className="date">
-                                                {new Date(commit.date).toLocaleDateString()}
-                                            </span>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>
-            )}
-        </div>
+            <PageLayout>
+                <PageLayout.Content>
+                    <Box p={4} maxWidth={1012} mx="auto">
+                        <Pagehead as="div">
+                            <Heading as="h1" fontSize={4} mb={2}>GitHub Repository Status</Heading>
+                            
+                            <Box mb={4} mt={3}>
+                                <form onSubmit={handleSearch}>
+                                    <Box display="flex" flexDirection={['column', 'column', 'row']} width="100%">
+                                        <FormControl sx={{ flexGrow: 1, mr: [0, 0, 2], mb: [2, 2, 0] }}>
+                                            <FormControl.Label visuallyHidden>Repositório</FormControl.Label>
+                                            <TextInput
+                                                block
+                                                value={searchInput}
+                                                onChange={(e) => setSearchInput(e.target.value)}
+                                                placeholder="Digite owner/repo (ex: facebook/react)"
+                                                aria-label="Digite owner/repo"
+                                                icon={RepoIcon}
+                                            />
+                                        </FormControl>
+                                        <Button type="submit" variant="primary">Buscar</Button>
+                                    </Box>
+                                </form>
+                                
+                                {error && (
+                                    <Flash variant="danger" mt={3}>
+                                        {error}
+                                    </Flash>
+                                )}
+                            </Box>
+                        </Pagehead>
+
+                        {loading && (
+                            <Box display="flex" justifyContent="center" p={4}>
+                                <Spinner size="large" />
+                            </Box>
+                        )}
+                        
+                        {repository && !loading && (
+                            <Box borderWidth="1px" borderStyle="solid" borderColor="border.default" borderRadius={2} overflow="hidden" bg="canvas.subtle">
+                                <Box p={3} bg="canvas.default" borderBottomWidth="1px" borderBottomStyle="solid" borderBottomColor="border.default" display="flex" justifyContent="space-between" alignItems="center">
+                                    <Box>
+                                        <Heading as="h2" fontSize={3}>
+                                            <RepoIcon size={16} mr={2} />
+                                            <Link href={repository.link} target="_blank" rel="noopener noreferrer">
+                                                {repository.fullName}
+                                            </Link>
+                                        </Heading>
+                                        <Text as="p" fontSize={1} color="fg.muted" mt={1}>
+                                            {repository.description}
+                                        </Text>
+                                    </Box>
+                                    <Button onClick={handleRefresh} variant="outline" leadingIcon={SyncIcon}>
+                                        Atualizar
+                                    </Button>
+                                </Box>
+                                
+                                <Box p={3}>
+                                    <Box sx={{
+                                        display: 'grid',
+                                        gridTemplateColumns: ['repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(5, 1fr)'],
+                                        gap: 3,
+                                        mb: 4
+                                    }}>
+                                        <Box display="flex" flexDirection="column" alignItems="center" p={2} bg="canvas.default" borderRadius={2} borderColor="border.default" borderWidth="1px" borderStyle="solid">
+                                            <Text as="span" fontSize={1} color="fg.muted" mb={1} display="flex" alignItems="center">
+                                                <IssueOpenedIcon size={14} mr={1} />
+                                                Issues
+                                            </Text>
+                                            <CounterLabel>{repository.issues}</CounterLabel>
+                                        </Box>
+                                        
+                                        <Box display="flex" flexDirection="column" alignItems="center" p={2} bg="canvas.default" borderRadius={2} borderColor="border.default" borderWidth="1px" borderStyle="solid">
+                                            <Text as="span" fontSize={1} color="fg.muted" mb={1} display="flex" alignItems="center">
+                                                <GitPullRequestIcon size={14} mr={1} />
+                                                Pull Requests
+                                            </Text>
+                                            <CounterLabel>{repository.pullRequests}</CounterLabel>
+                                        </Box>
+                                        
+                                        <Box display="flex" flexDirection="column" alignItems="center" p={2} bg="canvas.default" borderRadius={2} borderColor="border.default" borderWidth="1px" borderStyle="solid">
+                                            <Text as="span" fontSize={1} color="fg.muted" mb={1} display="flex" alignItems="center">
+                                                <StarIcon size={14} mr={1} />
+                                                Estrelas
+                                            </Text>
+                                            <CounterLabel>{repository.stars}</CounterLabel>
+                                        </Box>
+                                        
+                                        <Box display="flex" flexDirection="column" alignItems="center" p={2} bg="canvas.default" borderRadius={2} borderColor="border.default" borderWidth="1px" borderStyle="solid">
+                                            <Text as="span" fontSize={1} color="fg.muted" mb={1} display="flex" alignItems="center">
+                                                <RepoForkedIcon size={14} mr={1} />
+                                                Forks
+                                            </Text>
+                                            <CounterLabel>{repository.forks}</CounterLabel>
+                                        </Box>
+                                        
+                                        <Box display="flex" flexDirection="column" alignItems="center" p={2} bg="canvas.default" borderRadius={2} borderColor="border.default" borderWidth="1px" borderStyle="solid">
+                                            <Text as="span" fontSize={1} color="fg.muted" mb={1} display="flex" alignItems="center">
+                                                <CodeIcon size={14} mr={1} />
+                                                Linguagem
+                                            </Text>
+                                            <Label variant="accent">{repository.language || 'N/A'}</Label>
+                                        </Box>
+                                    </Box>
+                                    
+                                    <UnderlineNav aria-label="Repository details">
+                                        <UnderlineNav.Item selected icon={TagIcon}>
+                                            Releases
+                                        </UnderlineNav.Item>
+                                        <UnderlineNav.Item icon={CommitIcon}>
+                                            Commits
+                                        </UnderlineNav.Item>
+                                    </UnderlineNav>
+                                    
+                                    {repository.releases && repository.releases.length > 0 && (
+                                        <Box mt={3}>
+                                            <Timeline>
+                                                {repository.releases.map((release, index) => (
+                                                    <Timeline.Item key={index}>
+                                                        <Timeline.Badge>
+                                                            <TagIcon />
+                                                        </Timeline.Badge>
+                                                        <Timeline.Body>
+                                                            <Link href={release.url} target="_blank" rel="noopener noreferrer">
+                                                                {release.name}
+                                                            </Link>
+                                                            <Text as="span" fontSize={1} color="fg.muted" ml={2}>
+                                                                {new Date(release.date).toLocaleDateString()}
+                                                            </Text>
+                                                        </Timeline.Body>
+                                                    </Timeline.Item>
+                                                ))}
+                                            </Timeline>
+                                        </Box>
+                                    )}
+                                    
+                                    {repository.recentCommits && repository.recentCommits.length > 0 && (
+                                        <Box mt={3}>
+                                            <Timeline>
+                                                {repository.recentCommits.map((commit, index) => (
+                                                    <Timeline.Item key={index}>
+                                                        <Timeline.Badge>
+                                                            <CommitIcon />
+                                                        </Timeline.Badge>
+                                                        <Timeline.Body>
+                                                            <Link href={commit.url} target="_blank" rel="noopener noreferrer">
+                                                                {commit.message.split('\n')[0]}
+                                                            </Link>
+                                                            <Box display="flex" alignItems="center" mt={1}>
+                                                                <Text as="span" fontSize={1} color="fg.muted" display="flex" alignItems="center">
+                                                                    <PeopleIcon size={12} mr={1} />
+                                                                    {commit.author}
+                                                                </Text>
+                                                                <Text as="span" fontSize={1} color="fg.muted" ml={3}>
+                                                                    {new Date(commit.date).toLocaleDateString()}
+                                                                </Text>
+                                                            </Box>
+                                                        </Timeline.Body>
+                                                    </Timeline.Item>
+                                                ))}
+                                            </Timeline>
+                                        </Box>
+                                    )}
+                                </Box>
+                            </Box>
+                        )}
+                    </Box>
+                </PageLayout.Content>
+            </PageLayout>
+        </Box>
     );
 };
 
