@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { Repository, Status } from '../types';
 
 const GITHUB_API_URL = 'https://api.github.com';
 
-export const fetchRepositories = async (username: string): Promise<Repository[]> => {
+export const fetchRepositories = async (username) => {
     try {
         const response = await axios.get(`${GITHUB_API_URL}/users/${username}/repos`);
         return response.data;
@@ -13,7 +12,7 @@ export const fetchRepositories = async (username: string): Promise<Repository[]>
     }
 };
 
-export const fetchRepositoryStatus = async (owner: string, repo: string): Promise<Status> => {
+export const fetchRepositoryStatus = async (owner, repo) => {
     try {
         const response = await axios.get(`${GITHUB_API_URL}/repos/${owner}/${repo}/status`);
         return response.data;
@@ -23,7 +22,7 @@ export const fetchRepositoryStatus = async (owner: string, repo: string): Promis
     }
 };
 
-export const getRepoData = async (owner: string, repo: string) => {
+export const getRepoData = async (owner, repo) => {
     const response = await axios.get(`${GITHUB_API_URL}/repos/${owner}/${repo}`);
     const prs = await axios.get(response.data.pulls_url.replace('{/number}', ''));
 
