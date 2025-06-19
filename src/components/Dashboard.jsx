@@ -156,7 +156,7 @@ const Dashboard = () => {
               </Box>
               
               {/* Estatísticas */}
-              <BorderBox sx={{ mb: 4, p: 3 }}>
+              <Box sx={{ mb: 4, p: 3, borderWidth: '1px', borderStyle: 'solid', borderColor: 'border.default', borderRadius: 2 }}>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <CircleOcticon icon={IssueOpenedIcon} size={20} sx={{ mr: 2, color: 'success.fg' }} />
@@ -175,7 +175,7 @@ const Dashboard = () => {
                   </Box>
                   
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <StyledOcticon icon={StarFillIcon} size={20} sx={{ mr: 2, color: 'attention.fg' }} />
+                    <CircleOcticon icon={StarFillIcon} size={20} sx={{ mr: 2, color: 'attention.fg' }} />
                     <Box>
                       <Text sx={{ fontWeight: 'bold', display: 'block' }}>{repository.stars}</Text>
                       <Text sx={{ fontSize: 0, color: 'fg.muted' }}>Stars</Text>
@@ -183,7 +183,7 @@ const Dashboard = () => {
                   </Box>
                   
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <StyledOcticon icon={RepoForkedIcon} size={20} sx={{ mr: 2, color: 'accent.fg' }} />
+                    <CircleOcticon icon={RepoForkedIcon} size={20} sx={{ mr: 2, color: 'accent.fg' }} />
                     <Box>
                       <Text sx={{ fontWeight: 'bold', display: 'block' }}>{repository.forks}</Text>
                       <Text sx={{ fontSize: 0, color: 'fg.muted' }}>Forks</Text>
@@ -191,20 +191,20 @@ const Dashboard = () => {
                   </Box>
                   
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <StyledOcticon icon={CodeIcon} size={20} sx={{ mr: 2, color: 'fg.muted' }} />
+                    <CircleOcticon icon={CodeIcon} size={20} sx={{ mr: 2, color: 'fg.muted' }} />
                     <Box>
                       <Text sx={{ fontWeight: 'bold', display: 'block' }}>{repository.language || 'N/A'}</Text>
                       <Text sx={{ fontSize: 0, color: 'fg.muted' }}>Linguagem</Text>
                     </Box>
                   </Box>
                 </Box>
-              </BorderBox>
+              </Box>
               
               {/* Últimas releases */}
               {repository.releases && repository.releases.length > 0 && (
                 <Box sx={{ mb: 4 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <StyledOcticon icon={TagIcon} sx={{ mr: 2 }} />
+                    <CircleOcticon icon={TagIcon} sx={{ mr: 2 }} />
                     <Heading sx={{ fontSize: 2 }}>Últimas Releases</Heading>
                   </Box>
                   
@@ -236,7 +236,7 @@ const Dashboard = () => {
               {repository.recentCommits && repository.recentCommits.length > 0 && (
                 <Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <StyledOcticon icon={CommitIcon} sx={{ mr: 2 }} />
+                    <CircleOcticon icon={CommitIcon} sx={{ mr: 2 }} />
                     <Heading sx={{ fontSize: 2 }}>Commits Recentes</Heading>
                   </Box>
                   
