@@ -5,23 +5,21 @@ Este projeto é um dashboard que exibe o status de repositórios do GitHub. Ele 
 ## Estrutura do Projeto
 
 - **src/**: Contém o código-fonte da aplicação.
-  - **app.ts**: Ponto de entrada da aplicação.
+  - **app.jsx**: Ponto de entrada da aplicação.
   - **components/**: Contém os componentes React.
-    - **Dashboard.tsx**: Componente que exibe o status geral dos repositórios.
-    - **RepositoryCard.tsx**: Componente que representa um repositório individual.
-    - **StatusIndicator.tsx**: Componente que mostra o status do repositório.
+    - **Dashboard.jsx**: Componente que exibe o status geral dos repositórios.
+    - **RepositoryCard.jsx**: Componente que representa um repositório individual.
+    - **StatusIndicator.jsx**: Componente que mostra o status do repositório.
   - **services/**: Contém serviços para interagir com a API do GitHub.
-    - **githubApi.ts**: Funções para buscar informações sobre repositórios.
-    - **statusService.ts**: Funções para processar e formatar dados da API.
+    - **githubApi.js**: Funções para buscar informações sobre repositórios.
+    - **statusService.js**: Funções para processar e formatar dados da API.
   - **types/**: Contém tipos e interfaces utilizados no projeto.
-    - **index.ts**: Tipos e interfaces.
+    - **index.js**: Tipos e interfaces.
   - **utils/**: Contém funções utilitárias.
-    - **helpers.ts**: Funções para tarefas comuns.
+    - **helpers.js**: Funções para tarefas comuns.
 
 - **public/**: Contém arquivos públicos.
   - **index.html**: Documento HTML principal.
-
-- **tsconfig.json**: Configuração do TypeScript.
 
 - **package.json**: Configuração do npm.
 
