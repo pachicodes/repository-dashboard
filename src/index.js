@@ -1,10 +1,14 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { ThemeProvider, BaseStyles } from '@primer/react';
 import Dashboard from './components/Dashboard';
-import './styles/Dashboard.css';
 
 const App = () => (
-    <Dashboard />
+  <ThemeProvider>
+    <BaseStyles>
+      <Dashboard />
+    </BaseStyles>
+  </ThemeProvider>
 );
 
 const container = document.getElementById('root');
