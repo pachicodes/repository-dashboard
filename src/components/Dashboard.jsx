@@ -97,7 +97,7 @@ const Dashboard = () => {
             <PageLayout>
                 <PageLayout.Content>
                     <Box p={4} maxWidth={1012} mx="auto">
-                        <Pagehead as="div">
+                        <PageHeader>
                             <Heading as="h1" fontSize={4} mb={2}>GitHub Repository Status</Heading>
                             
                             <Box mb={4} mt={3}>
@@ -236,7 +236,7 @@ const Dashboard = () => {
                                                 {repository.recentCommits.map((commit, index) => (
                                                     <Timeline.Item key={index}>
                                                         <Timeline.Badge>
-                                                            <CommitIcon />
+                                                            <GitCommitIcon />
                                                         </Timeline.Badge>
                                                         <Timeline.Body>
                                                             <Link href={commit.url} target="_blank" rel="noopener noreferrer">
@@ -244,7 +244,7 @@ const Dashboard = () => {
                                                             </Link>
                                                             <Box display="flex" alignItems="center" mt={1}>
                                                                 <Text as="span" fontSize={1} color="fg.muted" display="flex" alignItems="center">
-                                                                    <PeopleIcon size={12} mr={1} />
+                                                                    <PersonIcon size={12} mr={1} />
                                                                     {commit.author}
                                                                 </Text>
                                                                 <Text as="span" fontSize={1} color="fg.muted" ml={3}>
