@@ -22,3 +22,18 @@ export const fetchRepositoryStatus = async (owner: string, repo: string): Promis
         throw error;
     }
 };
+
+export const getRepoData = async (owner: string, repo: string) => {
+    const response = await axios.get(`${GITHUB_API_URL}/repos/${owner}/${repo}`);
+    const prs = await axios.get(response.data.pulls_url.replace('{/number}', ''));
+
+    return {
+        id: response.data.id,
+        name: response.data.name,
+        description: response.data.description,
+        link: response.data.html_url,
+        issues: response.data.open_issues_count,
+        stars: response.data.stargazers_count,
+        prs: prs.data.length,
+    };
+};

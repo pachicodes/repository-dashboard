@@ -1,25 +1,29 @@
 import React from 'react';
 
 interface RepositoryCardProps {
-    name: string;
-    description: string;
-    status: 'online' | 'offline' | 'error';
-    openIssues: number;
-    pullRequests: number;
-    releases: number;
+    repo: {
+        id: number;
+        name: string;
+        description: string;
+        link: string;
+        issues: number;
+        prs: number;
+        stars: number;
+    };
+    onRefresh: (id: number) => void;
 }
 
-const RepositoryCard: React.FC<RepositoryCardProps> = ({ name, description, status, openIssues, pullRequests, releases }) => {
+const RepositoryCard: React.FC<RepositoryCardProps> = ({ repo, onRefresh }) => {
     return (
         <div className="repository-card">
-            <h3>{name}</h3>
-            <p>{description}</p>
+            <h3><a href={repo.link} target="_blank" rel="noopener noreferrer">{repo.name}</a></h3>
+            <p>{repo.description}</p>
             <div>
-                <span>Issues: {openIssues}</span>
-                <span>Pull Requests: {pullRequests}</span>
-                <span>Releases: {releases}</span>
+                <span>Issues: {repo.issues}</span>
+                <span>Pull Requests: {repo.prs}</span>
+                <span>Stars: {repo.stars}</span>
             </div>
-            <StatusIndicator status={status} />
+            <button onClick={() => onRefresh(repo.id)}>Atualizar</button>
         </div>
     );
 };
