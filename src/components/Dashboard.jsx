@@ -18,7 +18,14 @@ import {
   Avatar,
   Timeline,
   UnderlineNav,
-  Pagehead
+  PageHeader,
+  Label,
+  Link,
+  Text,
+  CounterLabel,
+  ButtonGroup,
+  Avatar,
+  Timeline
 } from '@primer/react';
 import {
   RepoIcon,
@@ -30,8 +37,8 @@ import {
   TagIcon,
   CodeIcon,
   MarkGithubIcon,
-  CommitIcon,
-  PeopleIcon
+  GitCommitIcon,
+  PersonIcon
 } from '@primer/octicons-react';
 
 const Dashboard = () => {
