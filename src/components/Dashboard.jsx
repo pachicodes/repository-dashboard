@@ -203,7 +203,7 @@ const Dashboard = () => {
                                         <UnderlineNav.Item selected icon={TagIcon}>
                                             Releases
                                         </UnderlineNav.Item>
-                                        <UnderlineNav.Item icon={CommitIcon}>
+                                        <UnderlineNav.Item icon={GitCommitIcon}>
                                             Commits
                                         </UnderlineNav.Item>
                                     </UnderlineNav>
